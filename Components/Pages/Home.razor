@@ -1,0 +1,26 @@
+﻿@page "/"
+
+@using BlazorAuthDemo.Security
+
+<PageTitle>Home</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <MudText>@context.User.Identity</MudText>
+    </Authorized>
+</AuthorizeView>
+
+<AuthorizeView >
+    <Authorized>
+        <a href="/logout">Logout</a>
+    </Authorized>
+    <NotAuthorized>
+        <a href="/login">Login</a>
+    </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Policy="@UserPolicy.ADD">
+    <Authorized>
+        <MudText>Policy ADD</MudText>
+    </Authorized>
+</AuthorizeView>

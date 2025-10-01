@@ -1,0 +1,53 @@
+﻿@page "/login"
+@using BlazorAuthDemo.Components.Pages.Login.Models
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authentication.Cookies
+
+<MudForm Model="Model">
+    <MudText Typo="Typo.h3">Login</MudText>
+    <MudTextField Label="Username" @bind-Value="Model.Username" For="@(() => Model.Username)"/>
+    <MudTextField Label="Password" @bind-Value="Model.Password" InputType="InputType.Password" For="@(() => Model.Password)" />
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Authenticate">Login</MudButton>
+</MudForm>
+
+@code {
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
+
+    [Inject]
+    private NavigationManager Navigation { get; set; } = default!;
+
+    public LoginModel Model { get; set; } = new();
+
+    private async Task Authenticate()
+    {
+        if(Model.Username.Equals("admin") && Model.Password.Equals("admin"))
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, Model.Username)
+            };
+
+
+            //Add Policies 
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(claimsIdentity);
+            // var authProperties = new AuthenticationProperties
+            // {
+            //     IsPersistent = true
+            // };
+            if (HttpContext != null)
+            {
+
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity)
+                    // ,authProperties
+                );
+            }
+
+            Navigation.NavigateTo("/");
+        }
+    }
+}
