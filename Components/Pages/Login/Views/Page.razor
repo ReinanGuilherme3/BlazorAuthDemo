@@ -1,53 +1,63 @@
 ﻿@page "/login"
 @using BlazorAuthDemo.Components.Pages.Login.Models
-@using System.Security.Claims
-@using Microsoft.AspNetCore.Authentication
-@using Microsoft.AspNetCore.Authentication.Cookies
+@inject NavigationManager Navigation
 
-<MudForm Model="Model">
-    <MudText Typo="Typo.h3">Login</MudText>
-    <MudTextField Label="Username" @bind-Value="Model.Username" For="@(() => Model.Username)"/>
-    <MudTextField Label="Password" @bind-Value="Model.Password" InputType="InputType.Password" For="@(() => Model.Password)" />
-    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Authenticate">Login</MudButton>
-</MudForm>
+<MudContainer Class="mt-12">
+    <MudPaper Elevation="8" Class="pa-6 mx-auto d-flex flex-column align-center" MaxWidth="400px">
+
+        <!-- Title -->
+        <MudText Typo="Typo.h4" Align="Align.Center" Class="mb-4">
+            🔐 System Access
+        </MudText>
+
+        <!-- Form -->
+        <MudForm Model="Model">
+            <MudStack Spacing="3">
+                <MudTextField Label="Username"
+                              @bind-Value="Model.Username"
+                              For="@(() => Model.Username)"
+                              Required="true"
+                              Immediate="true"
+                              Variant="Variant.Outlined" />
+
+                <MudTextField Label="Password"
+                              @bind-Value="Model.Password"
+                              For="@(() => Model.Password)"
+                              InputType="InputType.Password"
+                              Required="true"
+                              Immediate="true"
+                              Variant="Variant.Outlined" />
+
+                <MudButton ButtonType="ButtonType.Button"
+                           Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           FullWidth="true"
+                           Size="Size.Large"
+                           OnClick="Authenticate">
+                    Sign In
+                </MudButton>
+            </MudStack>
+        </MudForm>
+
+        <!-- Footer -->
+        <MudText Typo="Typo.caption" Align="Align.Center" Class="mt-4" Color="Color.Secondary">
+            © @DateTime.Now.Year - BlazorAuthDemo
+        </MudText>
+    </MudPaper>
+</MudContainer>
 
 @code {
-    [CascadingParameter]
-    public HttpContext? HttpContext { get; set; }
-
-    [Inject]
-    private NavigationManager Navigation { get; set; } = default!;
-
     public LoginModel Model { get; set; } = new();
 
     private async Task Authenticate()
     {
-        if(Model.Username.Equals("admin") && Model.Password.Equals("admin"))
+        if (Model.Username == "admin" && Model.Password == "admin")
         {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, Model.Username)
-            };
-
-
-            //Add Policies 
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(claimsIdentity);
-            // var authProperties = new AuthenticationProperties
-            // {
-            //     IsPersistent = true
-            // };
-            if (HttpContext != null)
-            {
-
-                await HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity)
-                    // ,authProperties
-                );
-            }
-
-            Navigation.NavigateTo("/");
+            Navigation.NavigateTo($"/login-handler?username={Model.Username}", forceLoad: true);
+        }
+        else
+        {
+            // here you could show a MudAlert with an error message
         }
     }
 }

@@ -1,7 +1,50 @@
 ﻿@page "/access-denied"
+@using Microsoft.AspNetCore.Components.Authorization
 
-<MudText>ACCESS DENIED</MudText>
+<MudContainer Class="mt-12 d-flex justify-center">
+    <MudPaper Elevation="6" Class="pa-8 d-flex flex-column align-center" MaxWidth="500px">
 
-@code {
+        <!-- Error Icon -->
+        <MudIcon Icon="@Icons.Material.Filled.Block" Color="Color.Error" Size="Size.Large" Class="mb-4" />
 
-}
+        <!-- Messages depending on authorization -->
+        <AuthorizeView>
+            <Authorized>
+                <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Error">
+                    Access Denied
+                </MudText>
+
+                <MudText Typo="Typo.subtitle1" Align="Align.Center" Class="mb-6" Color="Color.Secondary">
+                    You are signed in, but you don’t have permission to access this page.
+                </MudText>
+
+                <MudStack Row="true" Spacing="2" Justify="Justify.Center">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/">
+                        Go Home
+                    </MudButton>
+
+                    <MudButton Variant="Variant.Filled" Color="Color.Error" Href="/logout-handler">
+                        Sign Out
+                    </MudButton>
+                </MudStack>
+            </Authorized>
+
+            <NotAuthorized>
+                <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Error">
+                    Restricted Access
+                </MudText>
+
+                <MudText Typo="Typo.subtitle1" Align="Align.Center" Class="mb-6" Color="Color.Secondary">
+                    You must be signed in to access this page.
+                </MudText>
+
+                <MudStack Row="true" Spacing="2" Justify="Justify.Center">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/login">
+                        Go to Login
+                    </MudButton>
+                </MudStack>
+            </NotAuthorized>
+        </AuthorizeView>
+
+    </MudPaper>
+</MudContainer>

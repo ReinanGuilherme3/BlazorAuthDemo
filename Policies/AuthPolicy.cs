@@ -1,6 +1,6 @@
-﻿namespace BlazorAuthDemo.Security;
+﻿namespace BlazorAuthDemo.Policies;
 
-public class UserPolicy
+public class AuthPolicy
 {
     public const string VIEW = "VIEW";
     public const string ADD = "ADD";

@@ -1,0 +1,22 @@
+﻿@page "/create"
+
+@attribute [Authorize(Policy = AuthPolicy.CREATE)]
+
+<MudContainer Class="mt-12 d-flex justify-center">
+    <MudPaper Elevation="6" Class="pa-8 d-flex flex-column align-center" MaxWidth="500px">
+
+        <!-- Ícone -->
+        <MudIcon Icon="@Icons.Material.Filled.AddCircleOutline" Color="Color.Primary" Size="Size.Large" Class="mb-4" />
+
+        <!-- Título -->
+        <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Primary">
+            Create Page
+        </MudText>
+
+        <!-- Subtexto -->
+        <MudText Typo="Typo.subtitle1" Align="Align.Center" Class="mt-2">
+            This is the protected <b>Create</b> page. Only users with the CREATE policy can access it.
+        </MudText>
+
+    </MudPaper>
+</MudContainer>
