@@ -35,7 +35,7 @@ Cada camada tem uma **responsabilidade clara**, deixando o projeto **modular, li
 
 ---
 
-## ⚙️ Configuração Inicial
+## Configuração Inicial
 
 ### Policies (`AuthPolicy.cs`)
 ![AuthPolicy](Docs/Images/AuthPolicy.png)
@@ -67,7 +67,7 @@ Centraliza a configuração de autenticação/autorização:
 
 No arquivo `_Imports.razor`, além dos namespaces padrões, adicionamos os relacionados à autenticação, autorização e policies.  
 
-👉 Isso garante que em qualquer página possamos usar `[Authorize]`, `<AuthorizeView>` e validar policies sem precisar importar manualmente.
+Isso garante que em qualquer página possamos usar `[Authorize]`, `<AuthorizeView>` e validar policies sem precisar importar manualmente.
 
 ---
 
@@ -76,7 +76,7 @@ No arquivo `_Imports.razor`, além dos namespaces padrões, adicionamos os relac
 
 Personalizamos o roteamento para lidar com casos de **usuário não autorizado**.  
 
-👉 Aqui, qualquer rota protegida por `[Authorize]` que não for acessível redireciona automaticamente para a página **AccessDenied**, sem precisar repetir lógica em todas as páginas.
+Aqui, qualquer rota protegida por `[Authorize]` que não for acessível redireciona automaticamente para a página **AccessDenied**, sem precisar repetir lógica em todas as páginas.
 
 ---
 
@@ -89,7 +89,7 @@ Dessa forma, o Program.cs fica responsável apenas por registrar serviços e ini
 
 ---
 
-## 🎨 Páginas (UI)
+## Páginas (UI)
 
 ### Login
 ![Login](Docs/Images/Login.png)
