@@ -1,6 +1,6 @@
 ﻿# Autenticação e Autorização no Blazor Server
 
-![Capa](docs/images/capa.png)
+![Capa](Docs/Images/Capa.png)
 
 Autenticação e autorização são essenciais em qualquer aplicação.  
 No **Blazor Server**, conseguimos proteger **rotas** e **componentes** de forma simples e poderosa.
