@@ -127,10 +127,3 @@ Com o **BlazorAuthDemo**, vimos como estruturar autenticação e autorização n
 - Separar responsabilidades em **Policies, Config, Controllers, Imports, Routes e Program**  
 
 Essa abordagem deixa o projeto **organizado, escalável e fácil de evoluir**. 🚀  
-
----
-
-## Observação
-
-As imagens utilizadas neste README estão na pasta `docs/images`.  
-Se for clonar o projeto, certifique-se de manter a mesma estrutura de diretórios para que apareçam corretamente no GitHub.
