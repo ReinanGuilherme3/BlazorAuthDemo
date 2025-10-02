@@ -38,7 +38,7 @@ Cada camada tem uma **responsabilidade clara**, deixando o projeto **modular, li
 ## ⚙️ Configuração Inicial
 
 ### Policies (`AuthPolicy.cs`)
-![AuthPolicy](docs/images/AuthPolicy.png)
+![AuthPolicy](Docs/Images/AuthPolicy.png)
 
 Definem os tipos de permissões que o sistema vai usar.  
 Dessa forma, fica fácil manter e expandir regras de autorização.
@@ -46,14 +46,14 @@ Dessa forma, fica fácil manter e expandir regras de autorização.
 ---
 
 ### Controllers (`AuthController.cs`)
-![AuthController](docs/images/AuthController.png)
+![AuthController](Docs/Images/AuthController.png)
 
 Aqui controlamos **Login e Logout**, gerando as *claims* que serão usadas pelas policies.
 
 ---
 
 ### Config (`AuthConfig.cs`)
-![AuthConfig](docs/images/AuthConfig.png)
+![AuthConfig](Docs/Images/AuthConfig.png)
 
 Centraliza a configuração de autenticação/autorização:  
 - Cookies  
@@ -63,7 +63,7 @@ Centraliza a configuração de autenticação/autorização:
 ---
 
 ### Imports (`_Imports.razor`)
-![Imports](docs/images/imports.png)
+![Imports](Docs/Images/Imports.png)
 
 No arquivo `_Imports.razor`, além dos namespaces padrões, adicionamos os relacionados à autenticação, autorização e policies.  
 
@@ -72,7 +72,7 @@ No arquivo `_Imports.razor`, além dos namespaces padrões, adicionamos os relac
 ---
 
 ### Routes (`Routes.razor`)
-![Routes](docs/images/routes.png)
+![Routes](Docs/Images/Routes.png)
 
 Personalizamos o roteamento para lidar com casos de **usuário não autorizado**.  
 
@@ -81,7 +81,7 @@ Personalizamos o roteamento para lidar com casos de **usuário não autorizado**
 ---
 
 ### Program (`Program.cs`)
-![Program](docs/images/program.png)
+![Program](Docs/Images/Program.png)
 
 No Program.cs ficou bem limpo, porque concentrei a configuração no AuthConfig e os endpoints no AuthController:
 
@@ -92,28 +92,28 @@ Dessa forma, o Program.cs fica responsável apenas por registrar serviços e ini
 ## 🎨 Páginas (UI)
 
 ### Login
-![Login](docs/images/login.png)
+![Login](Docs/Images/Login.png)
 
 Tela inicial de autenticação.
 
 ---
 
 ### Access Denied
-![AccessDenied](docs/images/accessDenied.png)
+![AccessDenied](Docs/Images/AccessDenied.png)
 
 Mostra mensagens diferentes para **usuário logado sem permissão** e **usuário não logado**.
 
 ---
 
 ### Usuário sem acesso para Create
-![NoCreate1](docs/images/noCreate1.png)  
-![NoCreate2](docs/images/noCreate2.png)
+![NoCreate1](Docs/Images/NoCreate1.png)  
+![NoCreate2](Docs/Images/NoCreate2.png)
 
 ---
 
 ### Usuário com acesso para Create
-![WithCreate1](docs/images/withCreate1.png)  
-![WithCreate2](docs/images/withCreate2.png)
+![WithCreate1](Docs/Images/WithCreate1.png)  
+![WithCreate2](Docs/Images/WithCreate2.png)
 
 ---
 
